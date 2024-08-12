@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { houseDetailFirst } from "../data/PropertyData";
 
@@ -6,38 +6,52 @@ export const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const propertyDetail = houseDetailFirst; // Replace with actual data fetching logic based on ID
 
+  const images = [
+    propertyDetail.imgFirst,
+    propertyDetail.imgSecond,
+    propertyDetail.imgThird,
+    propertyDetail.imgFourth,
+  ].filter(Boolean);
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
-    
     <div className="flex flex-col mb-4 w-[90%] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-      {/* First Section: Images */}
-      <div className="flex w-full md:h-96">
-        <img
-          src={propertyDetail.imgFirst}
-          alt={`${propertyDetail.name}-1`}
-          className="object-cover w-full md:w-1/4 h-48 md:h-full"
-        />
-        {propertyDetail.imgSecond && (
+      {/* Image Section with Slide Buttons */}
+      <div className="relative flex justify-center items-center w-full h-96 bg-gray-200 mx-auto">
+        <div className="relative flex justify-center w-1/2 h-full items-center">
+          <button
+            onClick={handlePrevImage}
+            className="absolute left-0 p-2 bg-gray-800 text-white rounded-full focus:outline-none"
+          >
+            &#9664;
+          </button>
           <img
-            src={propertyDetail.imgSecond}
-            alt={`${propertyDetail.name}-2`}
-            className="object-cover w-full md:w-1/4 h-48 md:h-full"
+            src={images[currentImageIndex]}
+            alt={`${propertyDetail.name}-${currentImageIndex + 1}`}
+            className="object-cover w-full h-full"
           />
-        )}
-        {propertyDetail.imgThird && (
-          <img
-            src={propertyDetail.imgThird}
-            alt={`${propertyDetail.name}-3`}
-            className="object-cover w-full md:w-1/4 h-48 md:h-full"
-          />
-        )}
-        {propertyDetail.imgFourth && (
-          <img
-            src={propertyDetail.imgFourth}
-            alt={`${propertyDetail.name}-4`}
-            className="object-cover w-full md:w-1/4 h-48 md:h-full"
-          />
-        )}
+          <button
+            onClick={handleNextImage}
+            className="absolute right-0 p-2 bg-gray-800 text-white rounded-full focus:outline-none"
+          >
+            &#9654;
+          </button>
+        </div>
       </div>
+
       {/* Details Section */}
       <div className="w-full p-4 flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 p-4">

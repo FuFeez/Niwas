@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+import Ex1 from "../assets/Images/Exterior/Ex-1.jpeg";
+import In1 from "../assets/Images/Interior/In-1.jpeg";
+import In2 from "../assets/Images/Interior/In-2.jpeg";
 
 interface OptionSelectionProps {
   selectedStyle: string;
   setSelectedStyle: (style: string) => void;
-  exOne: string;
+  setOriginalImage: (image: string) => void;
 }
 
 const OptionSelection: React.FC<OptionSelectionProps> = ({
   selectedStyle,
   setSelectedStyle,
-  exOne,
+  setOriginalImage,
 }) => {
-  const styles = ["Minimalist", "Modern", "Mid Century"];
+  const styles = ["Minimalist", "Modern", "Mid Century", "Custom"];
 
   return (
     <div className="flex flex-col space-y-4">
@@ -37,9 +40,22 @@ const OptionSelection: React.FC<OptionSelectionProps> = ({
       <div className="grid grid-cols-4 gap-2">
         {/* Add your images here */}
         <img
-          src={exOne}
+          src={Ex1}
           alt="thumbnail"
           className="w-full h-1/2 object-cover"
+          onClick={() => setOriginalImage(Ex1)}
+        />
+        <img
+          src={In1}
+          alt="thumbnail"
+          className="w-full h-1/2 object-cover"
+          onClick={() => setOriginalImage(In1)}
+        />
+        <img
+          src={In2}
+          alt="thumbnail"
+          className="w-full h-1/2 object-cover"
+          onClick={() => setOriginalImage(In2)}
         />
         {/* Repeat for other images */}
       </div>
