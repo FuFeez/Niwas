@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-text {
+  background: linear-gradient(
+    to top right,
+    #51adf7,
+    #cd4cc3
+  ); /* Pink gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
