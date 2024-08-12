@@ -12,7 +12,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <div className="container mx-auto w-full">
+    <nav className="bg-white ">
       <div className="container mx-auto flex space-x-4 items-center py-4">
         <div className="text-black">
           <a href="/" className="text-2xl font-bold gradient-text">
@@ -37,6 +38,7 @@ const Navbar: React.FC = () => {
         <div className="md:hidden"></div>
       </div>
     </nav>
+    </div>
   );
 };
 

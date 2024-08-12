@@ -6,7 +6,7 @@ import { LoanGenerate } from "../components/LoanGenerate";
 
 export default function DetailPage() {
   return (
-    <div className="flex flex-col items-center p-8 space-y-8">
+    <div className="flex flex-col items-center">
       <Navbar />
       <PropertyDetail />
       <GenerateSession />
